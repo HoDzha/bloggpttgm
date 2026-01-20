@@ -42,7 +42,7 @@ def generate_content(topic: str):
             model="gpt-4o-mini",
             messages=[{"role": "user",
                        "content": f"Придумайте привлекательный и точный заголовок для статьи на тему '{topic}', с учётом актуальных новостей:\n{recent_news}. Заголовок должен быть интересным и ясно передавать суть темы."}],
-            max_tokens=60,
+            max_tokens=55,
             temperature=0.5,
             stop=["\n"]
         )
