@@ -43,7 +43,7 @@ def generate_content(topic: str):
             messages=[{"role": "user",
                        "content": f"Придумайте привлекательный и точный заголовок для статьи на тему '{topic}', с учётом актуальных новостей:\n{recent_news}. Заголовок должен быть интересным и ясно передавать суть темы."}],
             max_tokens=55,
-            temperature=0.5,
+            temperature=0.7,
             stop=["\n"]
         )
         title = resp_title.choices[0].message.content.strip()
@@ -53,8 +53,8 @@ def generate_content(topic: str):
             model="gpt-4o-mini",
             messages=[{"role": "user",
                        "content": f"Напишите мета-описание для статьи с заголовком: '{title}'. Оно должно быть полным, информативным и содержать основные ключевые слова."}],
-            max_tokens=120,
-            temperature=0.5,
+            max_tokens=100,
+            temperature=0.7,
             stop=["."]
         )
         meta_description = resp_meta.choices[0].message.content.strip()
@@ -66,7 +66,7 @@ def generate_content(topic: str):
                        "content": f"""Напишите подробную статью на тему '{topic}', используя последние новости:\n{recent_news}.
                 Статья должна быть:
                 1. Информативной и логичной
-                2. Содержать не менее 1500 символов
+                2. Содержать не менее 900 символов
                 3. Иметь четкую структуру с подзаголовками
                 4. Включать анализ текущих трендов
                 5. Иметь вступление, основную часть и заключение
@@ -74,7 +74,7 @@ def generate_content(topic: str):
                 7. Каждый абзац должен быть не менее 3-4 предложений
                 8. Текст должен быть легким для восприятия и содержательным"""
                        }],
-            max_tokens=1500,
+            max_tokens=1000,
             temperature=0.5,
             presence_penalty=0.6,
             frequency_penalty=0.6
